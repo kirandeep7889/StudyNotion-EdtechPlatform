@@ -3,7 +3,11 @@ const OTP=require("../models/OTP");
 const otpGenerator=require("otp-generator");
 const  bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
+const passwordUpdated = require('../mail/templates/passwordUpdated');
+const mailSender = require("../utils/mailSender");
 require("dotenv").config();
+const userCreated = require("../mail/templates/userCreated");
+
 
 
 //SEND OTP CONTROLLER
@@ -229,13 +233,86 @@ exports.login=async(req,res)=> {
 
 //CHANGE PASSWORD CONTROLLER
 
-exports.changePassword=()=>{
-    //get data from req body
-    //get oldpassword,newpassword,confirmNewpassword
+exports.changePassword=async(req,res)=>{
+    try{
+   //get oldpassword,newpassword,confirmNewpassword from body
+    const {oldPassword,newPassword,confirmNewPassword}=req.body;
+
+    //get  userdetails from userID through middleware
+      const {userId}=req.user.id;
+      const userDetails=await User.findById({userId});
+
     //validation
 
-    //update pwd in db
+     //validation to check none fields are empty
+    if(!oldPassword || !newPassword || !confirmNewPassword) {
+          return res.status(403).json({
+               success:false,
+               message: "ALL FIELDS ARE REQUIRED"
+          });
+        }
+
+       //Validate OLD PASSWORD  
+       const isPasswordMatch =await bcrypt.compare(oldPassword,userDetails.password);
+       if(!isPasswordMatch) {
+           res.status(401).json({
+            success:false,
+            message: "The password is incorrect"
+           })
+       }; 
+
+       //check if NewPasssword and confirmNewPassword are same or different
+          if(newPassword !==oldPassword) {
+            return res.status(401).json({
+                success:false,
+                message: "New password and confirm new password did not match"
+            })
+          }
+         
+        //check if oldpassword and new password are not eqaul
+        if(newPassword ==oldPassword) {
+            return res.status(401).json({
+                success:false,
+                message: "Old password and new password cannot be same"
+            })
+        };
+        
+         //Hash new password
+         const hashedPassword=await bcrypt(newPassword,10);
+
+         //update pwd in db
+         const userUpdated=await User.findByIdAndUpdate(
+            {userId},
+            {password:hashedPassword}
+            )
     //send mail-password updated
+        try{
+            const emailResponse=await mailSender(userUpdated.email,"PASSWORD CHANGED",passwordUpdated(userUpdated.email,`passsword updated successfully for ${userUpdated.firstName} ${userUpdated.lastName} `))
+             console.log('email sent successfully',emailResponse.response)
+        }
+        catch (err) {
+             console.log("error while sending email",err)
+             return res.status(500).json({
+                success:false,
+                message: "Error occured while sending email",
+                error : err.message
+             })
+         }
     //return response
+
+       return res.status(200).json({
+           success: true,
+           message : "Password changed"
+       });
+    }
+    catch(err) {
+        console.log(err);
+        return res.status(500).json({
+            success : false,
+            message : "PASSWORD CHANGING FAILED",
+            error : err.message
+        })          
+    }
+
 
 }

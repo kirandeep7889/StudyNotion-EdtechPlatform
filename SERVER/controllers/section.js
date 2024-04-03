@@ -13,6 +13,7 @@ exports.createSection = async(req,res) => {
             success:false,
             message: "Missing Properties"
            });
+        };
 
            //creATE Section
            const newSection=await Section.create({sectionName});
@@ -26,8 +27,13 @@ exports.createSection = async(req,res) => {
             },{
                 new:true
             }
-            )//todo:use populate to replace sections/subsections both in the updatedCourseDetails
-      };
+            ).populate({
+                path: "courseContent",
+                populate: {
+                    path: "subSection"
+                }
+            }).exec();
+            //todo:use populate to replace sections/subsections both in the updatedCourseDetails
         
          //send response
          return res.status(200).json({

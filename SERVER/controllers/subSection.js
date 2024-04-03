@@ -38,6 +38,8 @@ exports.createSubsection=async(req,res)=> {
         {new:true}
         //todo:log updated section section here,after adding populate query
         );
+        console.log(updatedSection)
+
 
         //return response
         return res.status(200).json({
