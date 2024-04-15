@@ -1,112 +1,164 @@
-const category = require("../models/category");
-const Tag=require("../models/category")
+const Category = require("../models/Category");
+const Course = require("../models/Course");
 
 
-//CREATE TAG
-exports.createCategory=async(req,res)=> {
+// CREATE Category HANDLER FUNCTION
+exports.createCategory = async (req, res) => {
     try{
-       
-        const {name,description}=req.body;
+        // FETCHING DATA FROM BODY
+        const {name, description} = req.body;
 
-        if(!name || !description) {
+        // VALIDATION
+        if(!name || !description){
             return res.status(400).json({
-                success: false,
-                message: 'All fields are required'
-            })                                                                    
+                success : false,
+                message : "ALL FIELDS ARE REQUIRED"
+            })
         }
-         //create entry in data
-         const categoryDetails=await category.create({
-            name:name,
-            description:description
-         });
-         console.log(categoryDetails)
 
-         //return response
-         return res.status(200).json({
-            success:true,
-            message: "Category created successfully"
-         })
+        // CREATE ENTRY IN DB
+        const categoryDetails = await Category.create({
+            name,
+            description,
+        });
+        // console.log(categoryDetails);
 
-    }
-    catch (err) {
+        return res.status(200).json({
+            success : true,
+            message : 'CATEGORY CREATED SUCCESSFULLY'
+        })
+
+    }catch(err){
         return res.status(500).json({
-            success: false,
-            message: err.message
+            success : false,
+            message : "CREATING Category FAILED",
         })
     }
- }
+}
 
 
- //GET ALL CATEGORTIES
-
- exports.showAllCategory=async(req,res)=> {
+// GET ALL Category
+exports.showAllCategories = async (req, res) => {
     try{
-        const allTags=await category.find({},{name:true,description:true})
-   
-                 //return response
-                 return res.status(200).json({
-                    success:true,
-                    message: "All categories returned successfully",
-                    allTags
-                });
-    }
-    catch(err) {
-        return res.status(500).json({
-            success: false,
-            message: err.message
+        const allCategorys = await Category.find({}, {name:true, description : true});
+        return res.status(200).json({
+            success : true,
+            allCategorys,
+            message : "ALL Categories FETCHED SUCCESSFULLY"
         })
-    }
- }
-
- //categoryPageDetails
-
- exports.categoryPageDetails=async (req,res)=> {
-      try{
-             //get categoryId
-             const {categoryId}=req.body;  
-            
-             //validation 
-             if(!categoryId) {
-                return res.status(400).json({
-                    success:false,
-                    message: "Category Id not found"
-                })
-             }
-             //get courses for specified categoryId
-              const selectedCategory=await category.findById(categoryId)
-                                                .populate("courses")
-                                                .exec();
-
-               //validation 
-               if(!selectedCategory) {
-                    return res.status(404).json({
-                        success:false,
-                        message: 'Data not found'
-                    })
-               }                                 
-             //get courses for different categories
-               const differentCategories=await category.find({
-                                                             _id: {$ne:categoryId},   
-                                                            })
-                                                            .populate("courses")
-                                                            .exec();
-             //get top selling courses
-
-             //return response
-             return res.status(200).json({
-                success:true,
-                data: {
-                    selectedCategory,
-                    differentCategories
-                }
-             })
-      }
-      catch(err) {
+    }catch(err){
         console.log(err);
         return res.status(500).json({
+            success : false,
+            message : "ERROR IN GETTING ALL Categories"
+        })
+    }
+}
+
+function getRandomInt(max){
+    return Math.floor(Math.random() * max)
+}
+
+// CATEGORY PAGE DETAILS
+exports.categoryPageDetails = async(req, res) => {
+    try{
+        // console.log(req.body)
+        // GET CATEGORY ID
+        const {categoryId} = req.body;
+
+        // VALIDATION
+        if(!categoryId){
+            return res.status(400).json({
+                success : false,
+                message : "CATEGORY ID NOT FOUND"
+            })
+        }
+
+        // COURSES OF SPECIFIED CATEGORYID
+        const selectedCategory = await Category.findById(categoryId)
+            .populate({
+                path : "courses",
+                match : { status : "published" },
+                populate : [
+                    {
+                    path : "instructor"
+                }
+                ,{
+                    path : "category"
+                },{
+                    path : "ratingsAndReviews"
+                }]
+            }).exec();
+
+        if(!selectedCategory){
+            return res.status(404).json({
+                success : false,
+                message : "CATEGORY NOT FOUND"
+            })
+        }
+
+        if(selectedCategory.courses.length === 0){
+            // console.log("NO COURSES FOUND IN SELECTED CATEGORY")
+            return res.status(200).json({
+                success : true,
+                message : "NO COURSES FOUND IN SELECTED CATEGORY",
+                data : {selectedCategory}
+            })
+        }
+
+        // GET COURSES FOR DIFFRENT CATEGORIES
+        const categoriesExceptSelected = await Category.find({
+                                                _id : {$ne: categoryId},
+                                                })
+                                            
+        let differentCategories = await Category.findOne(categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]._id)
+                                                .populate({
+                                                    path : "courses",
+                                                    match : { status : "published" },
+                                                    populate : [
+                                                        {
+                                                        path : "instructor"
+                                                    }
+                                                    ,{
+                                                        path : "category"
+                                                    },{
+                                                        path : "ratingsAndReviews"
+                                                    }]
+                                                }).exec()
+
+        const allCategories = await Category.find()
+                                                .populate({
+                                                    path : "courses",
+                                                    match : { status : "published" },
+                                                    populate : [
+                                                        {
+                                                        path : "instructor"
+                                                    }
+                                                    ,{
+                                                        path : "category"
+                                                    },{
+                                                        path : "ratingsAndReviews"
+                                                    }]
+                                                }).exec()
+
+        // GET TOP SELLING COURSES
+        const allCourses = allCategories.flatMap((category) => category.courses);
+        const mostSellingCourses = allCourses.sort((a,b) => b.sold - a.sold).slice(0,10);
+
+        return res.status(200).json({
+            success : true,
+            message : "ALL TYPES OF CATEGORIES FETCHED SUCCESSFULLY",
+            data : {
+                selectedCategory,
+                differentCategories,
+                mostSellingCourses
+            }
+        })
+    }catch(error){
+		return res.status(500).json({
 			success: false,
 			message: "Internal server error",
-			error: err.message,
-		});    
-      }
- }
+			error: error.message,
+		});
+    }
+}
