@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import SupStar from '../../../../../common/SupStar'
 import { RxCross2 } from "react-icons/rx"
 import { useSelector } from 'react-redux'
-import SupStar from '../../../../../common/SupStar.jsx'
 
-function ChipInput({name, label, register, errors, setValue, disabled=false}) {
+function ChipInput({name, label, register, errors, setValue, getValues, disabled=false}) {
     const { editCourse, course } = useSelector((state) => state.course)
     const [ tagList, setTagList ] = useState([])
 

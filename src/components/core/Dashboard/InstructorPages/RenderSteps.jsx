@@ -1,12 +1,11 @@
 import  { useEffect } from 'react'
 import { FaCheck } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
-// import CourseInformationForm from './CourseInformation/CourseInformationForm'
-// import CourseBuilderForm from './CourseBuilder/CourseBuilderForm'
 // import PublishCourse from './Publish/PublishCourse'
 import { useNavigate } from 'react-router-dom'
 import CourseInformationForm from './FormComponents/CourseInformation/CourseInformationForm'
 // import toast from 'react-hot-toast'
+import CourseBuilderForm from "./FormComponents/CourseBuilder/CourseBuilderForm"
 
 function RenderSteps() {
   const { step, course, editCourse } = useSelector((state) => state.course)
@@ -58,8 +57,8 @@ function RenderSteps() {
       </div>
       <div className=' relative'>
         {step === 1 && (<CourseInformationForm />)}
-        {/* {step === 2 && (<CourseBuilderForm />)}
-        {step === 3 && (<PublishCourse/>)} */}
+        {step === 2 && (<CourseBuilderForm />)}
+        {step === 3 && (<PublishCourse/>)}
       </div>
     </div>
   )

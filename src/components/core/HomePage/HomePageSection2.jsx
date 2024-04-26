@@ -1,8 +1,8 @@
 import React from 'react'
-import HighlightText from '../../common/HighLightText'
+import HighlightText from '../../common/HighlightText';
 import CTAButton from '../../common/CTAButton'
 import { GoArrowRight } from "react-icons/go"
-import TimelineSection from './TimeLineSection'
+import TimelineSection from './TimelineSection'
 import LearningLanguageSection from './LearningLanguageSection'
 
 function HomePageSection2() {

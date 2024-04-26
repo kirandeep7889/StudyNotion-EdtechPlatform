@@ -1,5 +1,5 @@
 import React from 'react'
-import HighlightText from '../../common/HighLightText'
+import HighlightText from '../../common/HighlightText'
 import knowYourProgressImage from "../../../assets/Images/Know_your_progress.png"
 import compareWithOthersImage from "../../../assets/Images/Compare_with_others.png"
 import planYourLessonsImage from "../../../assets/Images/Plan_your_lessons.png"

@@ -1,25 +1,26 @@
-import AboutSection1 from "../components/core/About/AboutSection1"
-import AboutSection2 from "../components/core/About/AboutSection2"
-import AboutSection3 from "../components/core/About/AboutSection3"
-import NavBar from '../components/common/NavBar'
-import Footer from "../components/common/Footer"
-import ContactForm from "../components/common/ContactForm"
+import React from 'react'
+import Navbar from '../components/common/Navbar'
+import AboutSection1 from '../components/core/About/AboutSection1'
+import AboutSection2 from '../components/core/About/AboutSection2'
+import AboutSection3 from '../components/core/About/AboutSection3'
+import ContactForm from '../components/common/ContactForm'
+import Footer from '../components/common/Footer'
+import ReviewSlider from '../components/common/ReviewSlider'
 
 function About() {
   return (
     <div>
         {/* <Navbar/> */}
-        <NavBar backgroundColor={0}/>
+        <Navbar backgroundColor={0}/>
 
         {/* SECTION 1 */}
         <AboutSection1/>
 
         {/* SECTION 2 */}
-         <AboutSection2/>
+        <AboutSection2/>
 
         {/* SECTION 3 */}
         <AboutSection3/>
-
 
         {/* CONTACT FORM */}
         <div className=' px-[420px] py-[90px]'>
@@ -27,7 +28,7 @@ function About() {
             <p className=' text-4xl font-semibold leading-[44px] text-richblack-5 tracking-[-0.72px]'>Get in Touch</p>
             <p className=' text-base font-medium mt-[12px] leading-6 text-richblack-300'>We’d love to here for you, Please fill out this form.</p>
           </div>
-           <ContactForm/>
+          <ContactForm/>
         </div>
 
         {/* REVIEWS */}
@@ -35,6 +36,7 @@ function About() {
             <div className=' w-full flex gap-8 flex-col'>
               <h2 className='text-center text-3xl font-semibold'>Review from Other Learners</h2>
               <div className=' w-full'>
+                <ReviewSlider/>
               </div>
             </div>
         </div>

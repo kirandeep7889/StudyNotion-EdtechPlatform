@@ -1,11 +1,10 @@
 import toast from "react-hot-toast";
-import { authEndpoints } from "../apis.js";
-import { setLoading, setToken } from "../../slices/authSlice.js"
+import { authEndpoints } from "../apis";
+import { setLoading, setToken } from "../../slices/authSlice"
 // import { resetCart } from "../../slices/cartSlice"
-import { setUser } from "../../slices/profileSlice.js"
-import { apiConnector } from "../apiconnector.js"
-import { resetCart } from "../../slices/cartSlice.js";
-// import { resetCart } from "../../slices/cartSlice.js";
+import { setUser } from "../../slices/profileSlice"
+import { apiConnector } from "../apiConnector"
+import { resetCart } from "../../slices/cartSlice";
 
 const {
     SENDOTP_API,
@@ -39,7 +38,6 @@ export function sendOtp(email, navigate) {
         // toast.dismiss(toastId);
     }
 }
-
 
 export function signUp(accountType, firstName, lastName, email, password, confirmPassword, otp, navigate){
     return async(dispatch) => {
@@ -75,7 +73,7 @@ export function login({email, password, navigate}){
                 email, password
             })
             console.log("LOGIN API RESPONSE...........", response)
-            // console.log(response.data.success)
+            console.log(response.data.success)
 
             if(!response.data.success) throw new Error(response.data.message)
 
@@ -128,15 +126,15 @@ export function resetPassword(password, confirmPassword, token, navigate){
             const response = await apiConnector("POST", RESETPASSWORD_API, {
                 password, confirmPassword, token
             })
-            console.log("RESET PASSWORD RESPONSE.........", response)
+            // console.log("RESET PASSWORD RESPONSE.........", response)
 
             if(!response.data.success) throw new Error(response.data.message)
 
-            toast.success("Password reset successful")
+            toast.success(response.data.message)
             navigate("/login")
         }catch(err){
             // console.log("RESET PASSWORD FAILED...",err)
-            toast.error("Error reseting password")
+            toast.error(err.response.data.message)
         }
         // toast.dismiss(toastId)
         dispatch(setLoading(false))

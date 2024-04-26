@@ -1,7 +1,7 @@
 import  { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux';
-import { createCourse, fetchCourseCategories, updateCourseDetails } from '../../../../../../services/operations/CourseDetailsAPI';
+import { createCourse, fetchCourseCategories, updateCourseDetails } from '../../../../../../services/operations/courseDetailsAPI';
 import SupStar from '../../../../../common/SupStar';
 import ChipInput from './ChipInput';
 import RequirementInput from './RequirementInput';
@@ -65,7 +65,7 @@ function CourseInformationForm() {
     }
 
     const onSubmit = async (data) => {     
-        // console.log(data)
+        console.log(data)
         if( editCourse ){
             if(isFormUpdated()){
                 const currentValues = getValues();
@@ -109,6 +109,7 @@ function CourseInformationForm() {
         formData.append("status", COURSE_STATUS.DRAFT)
 
         setLoading(true)
+        console.log(formData)
         const result = await createCourse(token, formData);
         if(result) { 
             dispatch(setStep(2))

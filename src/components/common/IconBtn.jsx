@@ -1,3 +1,4 @@
+import React from 'react'
 
 function IconBtn({text,onclick,children,disabled,outline,customClasses,type, color, customWidth}) {
   // console.log(onclick)

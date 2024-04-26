@@ -3,15 +3,15 @@ import { HiChatBubbleLeftRight } from "react-icons/hi2"
 import { GiEarthAmerica } from "react-icons/gi"
 import { BsFillTelephoneFill } from "react-icons/bs"
 import Footer from '../components/common/Footer'
-// import ReviewSlider from '../components/common/ReviewSlider'
-import NavBar from '../components/common/NavBar'
+import Navbar from '../components/common/Navbar'
+import ReviewSlider from '../components/common/ReviewSlider'
 
 function ContactUs() {
     const contactInfo = [
         {
             icon : <HiChatBubbleLeftRight className='w-[24px] h-[24px]'/>,
             heading : "Chat on us",
-            subheading : <p>Our friendly team is here to help.<br/><a href='mailto:itsmerohit.work@gmail.com'>@itsmerohit.work@gmail.com</a></p>
+            subheading : <p>Our friendly team is here to help.<br/><a href='mailto:s.kirandeep999@gmail.com'>@s.kirandeep999@gmail.com</a></p>
         },
         {
             icon : <GiEarthAmerica className='w-[24px] h-[24px]'/>,
@@ -26,7 +26,7 @@ function ContactUs() {
     ]
   return (
     <div>
-        <NavBar backgroundColor={0}/>
+        <Navbar backgroundColor={0}/>
         <div className='mt-[30px] px-[120px] py-[90px] flex justify-between gap-[50px] font-inter'>
             <div className=' bg-richblack-800 h-fit p-6 items-start rounded-xl flex flex-col gap-6 w-[60%]'>
                 {
@@ -53,7 +53,7 @@ function ContactUs() {
             <div className=' w-full flex gap-8 flex-col'>
               <h2 className='text-center text-3xl font-semibold'>Review from Other Learners</h2>
               <div className=' w-full'>
-                {/* <ReviewSlider/> */}
+                <ReviewSlider/>
               </div>
             </div>
         </div>

@@ -1,13 +1,13 @@
-import { useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
-import Sidebar from "../components/core/Dashboard/Sidebar";
-import Spinner from "../components/common/Spinner";
-import Navbar from "../components/common/NavBar"
+import React from 'react'
+import Navbar from '../components/common/Navbar'
+import { useSelector } from 'react-redux'
+import Spinner from '../components/common/Spinner';
+import Sidebar from '../components/core/Dashboard/Sidebar';
+import { Outlet } from 'react-router-dom';
 
-const DashBoard=()=> {
-
-    const {loading:authLoading}=useSelector((state)=>state.auth);
-    const {loading:profileLoading}=useSelector((state)=>state.profile);
+function Dashboard() {
+    const { loading : authLoading } = useSelector( (state) => state.auth);
+    const { loading : profileLoading } = useSelector( (state) => state.profile)
 
     if( authLoading || profileLoading ) return (<Spinner/>)
   return (
@@ -29,4 +29,4 @@ const DashBoard=()=> {
   )
 }
 
-export default DashBoard
+export default Dashboard

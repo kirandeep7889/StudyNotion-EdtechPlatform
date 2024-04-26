@@ -1,4 +1,5 @@
-import HighlightText from '../../common/HighLightText'
+import React from 'react'
+import HighlightText from '../../common/HighlightText'
 import CTAButton from '../../common/CTAButton'
 
 function AboutSection3() {

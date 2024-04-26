@@ -3,13 +3,13 @@ import HomePageSection1 from '../components/core/HomePage/HomePageSection1'
 import HomePageSection2 from '../components/core/HomePage/HomePageSection2'
 import HomePageSection3 from '../components/core/HomePage/HomePageSection3'
 import Footer from '../components/common/Footer'
-import NavBar from '../components/common/NavBar'
+import Navbar from '../components/common/Navbar'
 
 function Home() {
   return (
     <div>
         {/* NAVBAR */}
-        <NavBar backgroundColor={1}/>
+        <Navbar backgroundColor={1}/>
     
         {/* SECTION 1 */}
         <HomePageSection1/>

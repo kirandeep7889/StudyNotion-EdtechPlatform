@@ -1,4 +1,4 @@
-import  { useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
@@ -11,7 +11,7 @@ function LoginFormTemplate() {
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
         data.navigate = navigate;
-        // console.log(data);
+        console.log(data);
         dispatch(login(data));
     };
     const [showPassword, setShowPassword] = useState(false);

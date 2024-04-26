@@ -5,8 +5,8 @@ import { AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
 import { useForm } from 'react-hook-form';
 import { resetPassword } from '../services/operations/authAPI';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Navbar from '../components/common/Navbar';
 import { IoIosArrowRoundBack } from 'react-icons/io';
-import NavBar from '../components/common/NavBar';
 
 function UpdatePassword() {
     const { loading } = useSelector((state) => state.auth);
@@ -30,7 +30,7 @@ function UpdatePassword() {
           <div className=' absolute grid place-content-center h-screen w-screen'><Spinner/></div>
         ) : (
           <div>
-            <NavBar backgroundColor={1}/>
+            <Navbar backgroundColor={1}/>
           
             <div className='font-inter w-4/12 mx-auto h-screen grid place-content-center'>
                 <h1 className=' text-richblack-5 text-3xl font-semibold leading-10'>Choose new Password</h1>

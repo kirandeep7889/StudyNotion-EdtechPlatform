@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import frame from "../../../assets/Images/frame.png"
 import LoginFormTemplate from './LoginFormTemplate'
 import SignupFormTemplate from './SignupFormTemplate';

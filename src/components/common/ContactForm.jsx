@@ -1,7 +1,7 @@
-import  { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { codes } from '../../data/countrycode';
-import { apiConnector } from '../../services/apiconnector';
+import { apiConnector } from '../../services/apiConnector';
 import { contactUsEndpoints } from '../../services/apis';
 import Spinner from './Spinner';
 import toast from 'react-hot-toast';
@@ -18,7 +18,7 @@ function ContactForm() {
             setLoading(true)
             // const toastId = toast.loading("Submitting.....")
             const response = await apiConnector("POST", contactUsEndpoints.CONTACT_US_API, data)
-            console.log(response)
+            // console.log(response)/
             // toast.dismiss(toastId)
             setLoading(false)
         }catch(err){

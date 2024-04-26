@@ -1,3 +1,4 @@
+import React from 'react'
 import { BsFillPeopleFill } from "react-icons/bs"
 import { RiOrganizationChart } from "react-icons/ri"
 

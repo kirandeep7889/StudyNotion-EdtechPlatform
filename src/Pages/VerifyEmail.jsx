@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Spinner from '../components/common/Spinner'
 import OTPInput from 'react-otp-input';
 import { sendOtp, signUp } from '../services/operations/authAPI';
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from '../components/common/Navbar';
 import { IoIosArrowRoundBack } from "react-icons/io"
 import { GiBackwardTime } from "react-icons/gi"
-import NavBar from '../components/common/NavBar';
 
 function VerifyEmail() {
     const { signupData,loading } = useSelector((state) => state.auth)
@@ -30,7 +30,7 @@ function VerifyEmail() {
           <div className=' absolute grid place-content-center h-screen w-screen'><Spinner/></div>
         ) : (
           <div>
-            <NavBar backgroundColor={1}/>
+            <Navbar backgroundColor={1}/>
           
             <div className='font-inter w-3/12 mx-auto h-screen grid place-content-center'>
                 <div className=' flex flex-col'>

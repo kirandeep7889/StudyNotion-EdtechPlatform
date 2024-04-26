@@ -1,12 +1,12 @@
-import  { useState } from 'react'
+import React, { useState } from 'react'
 import { sidebarLinks } from '../../../data/dashboard-links'
 import { useDispatch, useSelector } from 'react-redux'
 import Spinner from '../../common/Spinner'
-import SidebarLinks  from './SidebarLinks.jsx'
 import { logout } from '../../../services/operations/authAPI'
 import { useNavigate } from 'react-router-dom'
 import { VscSignOut } from 'react-icons/vsc'
 import ConfirmationModal from '../../common/ConfirmationModal'
+import SidebarLink from './SidebarLinks'
 
 function Sidebar() {
     const { user, loading : profileLoading } = useSelector((state) => state.profile)
@@ -24,13 +24,13 @@ function Sidebar() {
                     {
                         sidebarLinks.map((link => {
                             if(link.type && user?.accountType !== link.type) return null
-                            return (<SidebarLinks link={link} key={link.id}/>)
+                            return (<SidebarLink link={link} key={link.id}/>)
                         }))
                     }
                 </div>
                 <div className=' mx-auto my-6 h-[1px] w-10/12 bg-richblack-600'></div>
                 <div className=' flex flex-col'>
-                    <SidebarLinks link={{name:"Settings",path:"dashboard/settings", icon:"VscSettingsGear"}}/>
+                    <SidebarLink link={{name:"Settings",path:"dashboard/settings", icon:"VscSettingsGear"}}/>
                     <div className={` relative cursor-pointer px-8 py-2 text-sm font-medium text-richblack-300`} onClick={() => { setConfirmationModal({
                                                                                                     text1: "Are You Sure?",
                                                                                                     text2: "You Will be Logged Out of Your Account",

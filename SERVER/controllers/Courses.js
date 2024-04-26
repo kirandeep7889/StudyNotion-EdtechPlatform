@@ -15,6 +15,8 @@ exports.createCourse = async (req, res) => {
         // GET USER ID FROM REQ OBJECT
         const userId = req.user.id;
 
+        console.log(userId)
+
         // DATA FETCH
         const {courseName, courseDescription, whatYouWillLearn, price, category} = req.body;
         let { status, tag:_tag, instructions:_instructions} = req.body
@@ -39,8 +41,9 @@ exports.createCourse = async (req, res) => {
             status = "Draft";
 
         // CHECK FOR INSTRUCTOR
-        const instructorDetails = await User.findById(userId, {accountType : "Instructor"});
+        const instructorDetails = await User.findById(userId, {accountType : "instructor"});
 
+        console.log(instructorDetails)
         if(!instructorDetails){
             return res.status(404).json({
                 success : false,

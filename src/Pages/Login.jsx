@@ -1,4 +1,5 @@
-import NavBar from '../components/common/NavBar'
+import React from 'react'
+import Navbar from '../components/common/Navbar'
 import LoginSignupTemplate from '../components/core/Forms/LoginSignupTemplate'
 import login from "../assets/Images/login.webp"
 import instructorLogin from "../assets/Images/instructorLogin.webp"
@@ -14,7 +15,7 @@ function Login() {
           <div className=' absolute grid place-content-center h-screen w-screen'><Spinner/></div>
         ) : (
           <div>
-            <NavBar backgroundColor={1}/>
+            <Navbar backgroundColor={1}/>
           
             <LoginSignupTemplate
               studentTitle={"Welcome Back"}

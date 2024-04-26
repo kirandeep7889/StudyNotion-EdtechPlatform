@@ -4,8 +4,8 @@ import Spinner from '../components/common/Spinner';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { getPasswordResetToken } from '../services/operations/authAPI';
+import Navbar from '../components/common/Navbar';
 import { IoIosArrowRoundBack } from 'react-icons/io';
-import NavBar from '../components/common/NavBar';
 
 function ForgotPassword() {
 
@@ -26,7 +26,7 @@ function ForgotPassword() {
           <div className=' absolute grid place-content-center h-screen w-screen'><Spinner/></div>
         ) : (
           <div>
-            <NavBar backgroundColor={1}/>
+            <Navbar backgroundColor={1}/>
           
             <div className='font-inter w-4/12 mx-auto h-screen grid place-content-center p-8'>
               <h1 className=' text-richblack-5 text-3xl font-semibold leading-10'>

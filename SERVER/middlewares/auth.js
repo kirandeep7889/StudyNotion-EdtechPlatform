@@ -40,7 +40,7 @@ exports.auth = async (req, res, next) => {
 // isStudent
 exports.isStudent = async(req, res, next) => {
     try{    
-        if(req.user.accountType !== "student"){
+        if(req.user.accountType !== "Student"){
             return res.status(401).json({
                 success : false,
                 message : "SORRY THIS IS A Student ONLY ROUTE"
@@ -64,6 +64,7 @@ exports.isInstructor = async(req, res, next) => {
                 message : 'SORRY THIS IS A INSTRUCTOR ONLY ROUTE'
             })
         }
+        console.log("helo instrcutor")
         next();
     }catch(err){
         return res.status(500).json({

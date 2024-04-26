@@ -78,7 +78,7 @@ const otpTemplate = (otp) => {
 				Once your account is verified, you will have access to our platform and its features.</p>
 			</div>
 			<div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
-					href="mailto:itsmerohit.work@gmail.com">itsmerohit.work@gmail.com</a>. We are here to help!</div>
+					href="mailto:s.kirandeep999@gmail.com">s.kirandeep999@gmail.com</a>. We are here to help!</div>
 		</div>
 	</body>
 	

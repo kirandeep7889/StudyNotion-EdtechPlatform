@@ -2,7 +2,7 @@ import React from 'react'
 import Banner from "../../../assets/Images/banner.mp4"
 import CodeBlocks from './CodeBlocks'
 import ExploreMore from './ExploreMore'
-import HighlightText from '../../common/HighLightText';
+import HighlightText from '../../common/HighlightText';
 import CTAButton from '../../common/CTAButton'
 import { Link } from 'react-router-dom'
 import { FiArrowRight } from "react-icons/fi"

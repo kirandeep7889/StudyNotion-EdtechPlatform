@@ -1,5 +1,7 @@
-import RenderSteps from "./RenderSteps"
-import { BsLightningChargeFill } from "react-icons/bs"
+import React from 'react'
+import RenderSteps from './FormComponents/RenderSteps'
+ import { BsLightningChargeFill } from "react-icons/bs"
+import { setEditCourse } from '../../../../slices/courseSlice'
 
 function AddCourse() {
   return (

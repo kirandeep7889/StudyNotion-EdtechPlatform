@@ -1,4 +1,5 @@
-import NavBar from '../components/common/NavBar'
+import React from 'react'
+import Navbar from '../components/common/Navbar'
 import LoginSignupTemplate from '../components/core/Forms/LoginSignupTemplate'
 import signup from "../assets/Images/signup.webp"
 import instructorLogin from "../assets/Images/instructorLogin.webp"
@@ -14,7 +15,7 @@ function Signup() {
         <div className=' absolute grid place-content-center h-screen w-screen'><Spinner/></div>
       ) : (
         <div>
-            <NavBar backgroundColor={1}/>
+            <Navbar backgroundColor={1}/>
 
             <LoginSignupTemplate
               studentTitle={"Join the millions learning to code with EduSphere for free"}
