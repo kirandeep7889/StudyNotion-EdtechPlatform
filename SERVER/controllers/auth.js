@@ -10,6 +10,7 @@ const passwordUpdated = require('../mail/templates/passwordUpdated');
 const userCreated = require("../mail/templates/userCreated");
 
 
+
 // SEND OTP
 exports.sendOTP = async (req, res) => {
     try{

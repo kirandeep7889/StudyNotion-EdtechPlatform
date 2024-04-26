@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const {sendOTP , signUp, login, changePassword} = require('../controllers/Auth');
+const {sendOTP , signUp, login, changePassword} = require("../controllers/auth")
 
 const {auth, isStudent, isAdmin, isInstructor} = require("../middlewares/auth");
 
 const {resetPasswordToken, resetPassword} = require("../controllers/ResetPassword");
+const validatePasswordInput = require('../Validators/passwordValidation');
 
 // ROUTES FOR LOGIN, SIGNUP, AND AUTHENTICATION
 
@@ -18,7 +19,7 @@ const {resetPasswordToken, resetPassword} = require("../controllers/ResetPasswor
 router.post("/login", login);
 
 // ROUTE FOR USER SIGNUP
-router.post("/signup", signUp);
+router.post("/signup",validatePasswordInput, signUp);
 
 // ROUTER FOR SENDING OTP TO USER EMAIL
 router.post("/sendotp", sendOTP);
