@@ -36,7 +36,7 @@ function MyProfile() {
       ]
   return (
     <div className='pb-9'>
-      <p className=' text-richblack-300 text-sm left-6 font-normal'>Home / Dashboard / <span className=' text-yellow-50'>My Profile</span></p>
+      <p className=' text-richblack-300 text-sm left-6 font-normal'>Home/ Dashboard / <span className=' text-yellow-50'>My Profile</span></p>
       <h1 className=' text-3xl font-normal py-3 text-richblack-5'>My Profile</h1>
       <div className=' flex items-center justify-center flex-col gap-5 w-[75%] mx-auto'>
       {/* SECTION 1 */}

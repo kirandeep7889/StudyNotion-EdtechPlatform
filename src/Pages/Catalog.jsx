@@ -38,8 +38,8 @@ function Catalog() {
       try{
         if(categoryId){
           const result = await getCatalogPageData(categoryId)
-          // console.log(result)
-          // console.log(result?.data?.data)
+          console.log(result)
+          console.log(result?.data?.data)
           setCatalogPagedata(result?.data?.data)
         }
       }catch(err){

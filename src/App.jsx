@@ -39,6 +39,7 @@ function App() {
                   <Route path="/" element={<Home/>}/>
                   <Route path='/catalog/:catalogName' element={<Catalog/>}/>
                   <Route path="/courses/:courseId" element={<CoursePage/>}/>
+                  
                   <Route path="/about" element={<About/>}/>
                   <Route path="/login" element={<OpenRoute><Login/></OpenRoute>}/>
                   <Route path="/signup" element={<OpenRoute><Signup/></OpenRoute>}/>

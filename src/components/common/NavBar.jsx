@@ -8,7 +8,6 @@ import { AiOutlineShoppingCart } from "react-icons/ai"
 import ProfileDropDown from '../core/Navbar/ProfileDropDown'
 import LogBtns from '../core/Navbar/LogBtns'
 import { IoIosArrowDown } from "react-icons/io"
-// import { fetchCourseCategories } from '../../services/operations/courseDetailsAPI'
 import { ACCOUNT_TYPE } from '../../utils/constants'
 import Spinner from './Spinner'
 import { fetchCourseCategories } from '../../services/operations/courseDetailsAPI'

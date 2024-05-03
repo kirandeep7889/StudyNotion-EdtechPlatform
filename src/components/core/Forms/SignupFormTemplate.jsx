@@ -45,7 +45,10 @@ function SignupFormTemplate({accountType}) {
             <div className="block sm:flex flex-wrap justify-between items-center relative">
                 <label>
                     <p className="text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]">Password<sup className="text-pink-200">*</sup></p>
-                    <input className="bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full md:w-[220px] p-[12px] border-b-[1px] border-richblack-100" required type={showPassword ? ("text"):("password")} name="password" {...register("password")} placeholder="Enter Password"/>
+                    <input className=" rounded-[0.5rem] text-richblack-5 w-full md:w-[220px] p-[12px] border-b-[1px]
+                     border-richblack-100" required type={showPassword ? ("text"):("password")
+                    }
+                     name="password" {...register("password")} placeholder="Enter Password"/>
                     <span className="absolute right-3 sm:right-64 top-[38px] cursor-pointer"
                     onClick={() => setShowPassword((prev) => !prev)}>
                         { showPassword ? <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF"/> : <AiOutlineEye fontSize={24} fill="#AFB2BF"/>}
