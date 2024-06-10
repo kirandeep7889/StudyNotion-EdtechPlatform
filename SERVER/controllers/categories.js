@@ -62,7 +62,7 @@ function getRandomInt(max){
 // CATEGORY PAGE DETAILS
 exports.categoryPageDetails = async(req, res) => {
     try{
-        // console.log(req.body)
+        console.log(req.body)
         // GET CATEGORY ID
         const {categoryId} = req.body;
 

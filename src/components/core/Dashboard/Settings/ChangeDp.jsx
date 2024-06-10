@@ -25,7 +25,7 @@ function ChangeDp() {
         e.preventDefault();
         if(!selectedImage) {toast.error(<>Please Select an Image</>); return}
         try{
-            setLoading(true)
+            setLoading(true);
             const formData = new FormData();
             formData.append('dp', selectedImage);
             dispatch(updateDisplayPicture(token,formData)).then(() => setLoading(false))
