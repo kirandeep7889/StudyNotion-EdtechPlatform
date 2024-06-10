@@ -134,7 +134,6 @@ function Navbar({backgroundColor}) {
                     </ul>
                 </nav>
 
-                {/* LOGIN SIGNUP BTN */}
                 <div className='flex gap-x-6 items-center justify-end'>
                     {
                         user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
